@@ -5,7 +5,7 @@
 		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
 		<meta charset="UTF-8">
 
-		<title>caderno</title>
+		<title>Caderno Notes</title>
 
 		<script id="sap-ui-bootstrap"
 			src="../../resources/sap-ui-core.js"
@@ -18,14 +18,15 @@
 		<link rel="stylesheet" type="text/css" href="css/style.css">
 
 		<script>
-			sap.ui.getCore().attachInit(function() {
-				new sap.m.Shell({
-					app: new sap.ui.core.ComponentContainer({
-						height : "100%",
-						name : "jz.caderno"
-					})
-				}).placeAt("content");
-			});
+		 sap.ui.getCore().attachInit(function() {
+			 new sap.m.Shell({
+				 app: new sap.ui.core.ComponentContainer({
+					 height : "100%",
+					 name : "jz.caderno"
+				 }),
+                 appWidthLimited: false 
+			 }).placeAt("content");
+		 });
 		</script>
 	</head>
 

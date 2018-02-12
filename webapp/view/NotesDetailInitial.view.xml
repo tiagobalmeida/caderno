@@ -1,0 +1,14 @@
+<mvc:View
+	height="100%"
+	width="100%"
+	controllerName="jz.caderno.controller.NotesDetail"
+	xmlns="sap.m"
+	xmlns:l="sap.ui.layout"
+	xmlns:mvc="sap.ui.core.mvc"
+	xmlns:core="sap.ui.core"
+	xmlns:custom="sap.ui.documentation.sdk.controls">
+  <Page id="topicDetailPage"
+		showHeader="false"
+		class="sapUiNoContentPadding">
+  </Page>
+</mvc:View>

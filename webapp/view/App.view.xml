@@ -1,0 +1,21 @@
+<mvc:View controllerName="jz.caderno.controller.App"
+          xmlns:html="http://www.w3.org/1999/xhtml"
+	      displayBlock="true"
+          xmlns:mvc="sap.ui.core.mvc"
+          xmlns="sap.m"
+          xmlns:tnt="sap.tnt">
+  <Page
+	  showHeader="false"
+	  enableScrolling="false"
+	  showNavButton="false"
+	  class="sapUiDemokit">
+	<content>
+      <tnt:ToolHeader id="headerToolbar">
+      </tnt:ToolHeader>
+      <SplitApp id="splitApp"
+			    defaultTransitionNameDetail="show"
+			    defaultTransitionNameMaster="show">
+      </SplitApp>
+    </content>
+  </Page>
+</mvc:View>
