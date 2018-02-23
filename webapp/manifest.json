@@ -64,9 +64,15 @@
 			}
 		},
 		"resources": {
+            "js": [
+                {"uri": "bower_components/simplemde/dist/simplemde.js"}
+            ],
 			"css": [{
 				"uri": "css/style.css"
-			}]
+			},
+            {
+                "uri": "bower_components/simplemde/dist/simplemde.css"
+            }]
 		},
 		"routing": {
 			"config": {
