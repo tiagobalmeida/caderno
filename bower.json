@@ -1,0 +1,24 @@
+{
+  "name": "caderno",
+  "description": "A note taking application written in UI5",
+  "main": "index.html",
+  "authors": [
+    "Tiago Almeida <tiago.b.almeida@gmail.com>"
+  ],
+  "license": "MIT",
+  "keywords": [
+    "UI5",
+    "Markdown"
+  ],
+  "homepage": "https://github.com/jumpifzero/caderno",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "simplemde": "^1.11.2"
+  }
+}

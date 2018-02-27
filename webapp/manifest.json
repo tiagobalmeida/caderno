@@ -65,14 +65,14 @@
 		},
 		"resources": {
             "js": [
-                {"uri": "bower_components/simplemde/dist/simplemde.js"}
+                {"uri": "bower_components/simplemde/dist/simplemde.min.js"},
+                {"uri": "bower_components/highlightjs/highlight.pack.min.js"}
             ],
-			"css": [{
-				"uri": "css/style.css"
-			},
-            {
-                "uri": "bower_components/simplemde/dist/simplemde.css"
-            }]
+			"css": [
+                {"uri": "css/style.css"},
+                {"uri": "bower_components/simplemde/dist/simplemde.min.css"},
+                {"uri": "bower_components/highlightjs/styles/monokai.css"}
+            ]
 		},
 		"routing": {
 			"config": {
