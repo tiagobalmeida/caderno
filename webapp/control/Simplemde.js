@@ -1,5 +1,6 @@
 /*
  */
+/* global SimpleMDE sap */
 sap.ui.define([
     'jquery.sap.global',
     'sap/ui/core/Control'
@@ -24,7 +25,9 @@ sap.ui.define([
                        */
                       metadata: {
                           properties: {
-
+                              placeholderText: {
+                                  type: "String", defaultValue: "Type your note here..." 
+                              }
                           }
                       },
 
@@ -32,7 +35,43 @@ sap.ui.define([
                           
                       },
 
+                      _simplemdeToolbar: function () {
+                          var toolbar = [
+                              "bold",
+                              "italic",
+                              "strikethrough",
+                              "|",
+                              "heading",
+                              //"heading-smaller",
+                              //"heading-bigger",
+                              //"heading-1",
+                              //"heading-2",
+                              //"heading-3",
+                              "|",
+                              "code",
+                              "quote",
+                              "|",
+                              "unordered-list",
+                              "ordered-list",
+                              "clean-block",
+                              "link",
+                              "image",
+                              "table",
+                              "horizontal-rule",
+                              "|",
+                              "preview",
+                              "side-by-side",
+                              "fullscreen",
+                              "|",
+                              "guide",
+                              {name: "save", action: function(){}, className: "fa fa-save", title: "Save"}
+                          ];
+                          return toolbar;
+                      },
+
                       onAfterRendering: function () {
+                          var placeholder = this.getPlaceholderText();
+                          
                           // Most options demonstrate the non-default behavior
                           var simplemde = new SimpleMDE({
 	                          autofocus: true,
@@ -46,7 +85,6 @@ sap.ui.define([
 	                          element: document.getElementById(this.getId()),
 	                          forceSync: true,
 	                          indentWithTabs: false,
-	                          initialValue: "Hello world!",
 	                          insertTexts: {
 		                          horizontalRule: ["", "\n\n-----\n\n"],
 		                          image: ["![](http://", ")"],
@@ -57,9 +95,9 @@ sap.ui.define([
 	                          parsingConfig: {
 		                          allowAtxHeaderWithoutSpace: true,
 		                          strikethrough: false,
-		                          underscoresBreakWords: true,
+		                          underscoresBreakWords: true
 	                          },
-	                          placeholder: "Type here...",
+	                          placeholder: placeholder,
 	                          promptURLs: true,
 	                          renderingConfig: {
 		                          singleLineBreaks: false,
@@ -72,8 +110,7 @@ sap.ui.define([
 	                          status: true,
 	                          styleSelectedText: false,
 	                          tabSize: 4,
-	                          toolbar: true,
-	                          toolbarTips: true
+                              toolbar: this._simplemdeToolbar()
                           });
                       }
 
