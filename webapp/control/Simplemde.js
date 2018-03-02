@@ -35,7 +35,18 @@ sap.ui.define([
                           
                       },
 
+                      /**
+                       * Called when the user presses the Save Button.
+                       * @param {object} name
+                       * @returns {object}
+                       */
+                      onSave: function () {
+                          
+                      },
+
+
                       _simplemdeToolbar: function () {
+                          var that = this;
                           var toolbar = [
                               "bold",
                               "italic",
@@ -64,7 +75,10 @@ sap.ui.define([
                               "fullscreen",
                               "|",
                               "guide",
-                              {name: "save", action: function(){}, className: "fa fa-save", title: "Save"}
+                              {
+                                  name: "save",
+                                  action: that.onSave,
+                                  className: "fa fa-save", title: "Save"}
                           ];
                           return toolbar;
                       },

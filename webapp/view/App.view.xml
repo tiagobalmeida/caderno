@@ -1,8 +1,9 @@
 <mvc:View controllerName="jz.caderno.controller.App"
           xmlns:html="http://www.w3.org/1999/xhtml"
 	      displayBlock="true"
-          xmlns:mvc="sap.ui.core.mvc"
           xmlns="sap.m"
+          xmlns:core="sap.ui.core"
+          xmlns:mvc="sap.ui.core.mvc"
           xmlns:tnt="sap.tnt">
   <Page
 	  showHeader="false"
@@ -11,6 +12,15 @@
 	  class="sapUiDemokit">
 	<content>
       <tnt:ToolHeader id="headerToolbar">
+        <ToolbarSpacer visible="{= ${device>/system/phone} || !${appView>/bPhoneSize}}">
+		  <layoutData>
+			<OverflowToolbarLayoutData priority="NeverOverflow" minWidth="{= ${device>/system/tablet} ? '' : '1rem'}" />
+		  </layoutData>
+		</ToolbarSpacer>
+        <Button text="{i18n>toolbar.btn.note.new}"
+                press=".doCreateNote"/>
+        <core:Icon src="sap-icon://user-settings"
+              press=".doEditSettings"/>
       </tnt:ToolHeader>
       <SplitApp id="splitApp"
 			    defaultTransitionNameDetail="show"

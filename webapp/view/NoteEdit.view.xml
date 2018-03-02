@@ -1,7 +1,7 @@
 <mvc:View
 	height="100%"
 	width="100%"
-	controllerName="jz.caderno.controller.NotesDetail"
+	controllerName="jz.caderno.controller.NoteEdit"
 	xmlns="sap.m"
 	xmlns:l="sap.ui.layout"
 	xmlns:mvc="sap.ui.core.mvc"
@@ -11,7 +11,8 @@
 		showHeader="false"
 		class="sapUiNoContentPadding">
     <content>
-      <Text text="Some note" />
+      <Input text="{view>note/name}" placeholder="{i18n>note.edit.name.placeholder}" />
+      <cust:Simplemde />
     </content>
   </Page>
 </mvc:View>

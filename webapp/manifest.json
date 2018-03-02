@@ -85,9 +85,19 @@
 			},
 			"routes": [
                 {
+                    "pattern": "note-edit/{noteId}",
+                    "name": "note-edit",
+                    "target": ["notesMaster", "noteEdit"]
+                },
+                {
 			        "pattern": "notes",
 			        "name": "notes",
 			        "target": ["notesMaster", "notesDetailInitial"]
+		        },
+                {
+			        "pattern": "settings",
+			        "name": "settings",
+			        "target": ["notesMaster", "settings"]
 		        }
             ],
 			"targets": {
@@ -103,7 +113,15 @@
 				    "viewName": "NotesDetailInitial",
 				    "viewId": "notesDetailInitial",
 				    "viewLevel": 2
-			    }
+			    },
+                "noteEdit":{
+                    "viewName": "NoteEdit",
+				    "viewLevel": 2
+                },
+                "settings":{
+                    "viewName": "Settings",
+				    "viewLevel": 2
+                }
 			}
 		}
 	}
