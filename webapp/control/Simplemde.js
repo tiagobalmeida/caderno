@@ -88,6 +88,7 @@ sap.ui.define([
                           
                           // Most options demonstrate the non-default behavior
                           var simplemde = new SimpleMDE({
+                              autoDownloadFontAwesome: false,
 	                          autofocus: true,
 	                          autosave: {
 		                          enabled: false,
