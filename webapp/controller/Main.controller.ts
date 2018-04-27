@@ -1,10 +1,7 @@
-/* global sap */
-sap.ui.define([
-    "sap/ui/core/mvc/Controller"
-], function(Controller) {
-    "use strict";
+import BaseController from "jz/caderno/controller/BaseController";
+import JSONModel      from "sap/ui/model/json/JSONModel";
 
-    return Controller.extend("jz.caderno.controller.Main", {
+@UI5("jz.caderno.controller.Main")
+export default class Main extends BaseController {
 
-    });
-});
+}

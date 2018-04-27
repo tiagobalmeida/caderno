@@ -1,7 +1,7 @@
 /* global sap */
 import JSONModel from "sap/ui/model/json/JSONModel";
 import Device    from "sap/ui/Device";
-import Constants from "jz/caderno/util/constants";
+import Constants from "jz/caderno/util/Constants";
 
 export default {
 
@@ -21,5 +21,7 @@ export default {
         };
 	var oModel = new JSONModel(defaults, false);
 	return oModel;
-    }
+    },
+
+
 };

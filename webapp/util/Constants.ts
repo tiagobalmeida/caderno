@@ -1,13 +1,12 @@
-export default {
+export default class Constants {
 
     // ============================================================
     // Constants
     // ============================================================
 
     // dummy Id for a new note
-    NOTE_ID_NEW: "new",
+    static readonly NOTE_ID_NEW = "new";
     // different save methods the app supports
-    NOTE_SAVE_METHOD_REST: 1,    // Rest endpoint
-    NOTE_SAVE_METHOD_GDRIVE: 2   // Google Drive folder
-
+    static readonly NOTE_SAVE_METHOD_REST = 1;     // Rest endpoint
+    static readonly NOTE_SAVE_METHOD_GDRIVE = 2;   // Google Drive folder
 };

@@ -1,4 +1,4 @@
-define(["require", "exports", "sap/ui/model/json/JSONModel", "sap/ui/Device", "jz/caderno/util/constants"], function (require, exports, JSONModel_1, Device_1, constants_1) {
+define(["require", "exports", "sap/ui/model/json/JSONModel", "sap/ui/Device", "jz/caderno/util/Constants"], function (require, exports, JSONModel_1, Device_1, Constants_1) {
     "use strict";
     Object.defineProperty(exports, "__esModule", { value: true });
     exports.default = {
@@ -12,12 +12,12 @@ define(["require", "exports", "sap/ui/model/json/JSONModel", "sap/ui/Device", "j
             // create an object with the default application settings
             var defaults = {
                 save: {
-                    method: constants_1.default.NOTE_SAVE_METHOD_GDRIVE
+                    method: Constants_1.default.NOTE_SAVE_METHOD_GDRIVE
                 }
             };
             var oModel = new JSONModel_1.default(defaults, false);
             return oModel;
-        }
+        },
     };
 });
 //# sourceMappingURL=models.js.map
