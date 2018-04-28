@@ -25,10 +25,10 @@
 		  id="tree"
 		  mode="SingleSelectMaster"
 		  selectionChange="onNodeSelect"
-		  items="{ path: '/tags' }">
+		  items="{ path: 'data>/notes' }">
 		<StandardTreeItem
-			title="{name}"
-			selected="{isSelected}">
+			title="{data>name}"
+			selected="{data>isSelected}">
 		  <customData>
 			<core:CustomData key="nodeId" value="TODO" />
 		  </customData>

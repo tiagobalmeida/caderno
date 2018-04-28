@@ -33,10 +33,16 @@ define(["require", "exports", "jz/caderno/controller/BaseController"], function 
         NoteEdit.prototype.doSaveNote = function () {
             // To save a note, we first determine where to save it.
             // This is stored in the AppSettings model.
-            alert("just Testing");
             var settings = this.AppSettings;
             if (settings.save.method === this.Constants.NOTE_SAVE_METHOD_REST) {
             }
+            var dataModel = this.getModel("data");
+            var notes = dataModel.getProperty("/notes");
+            dataModel.setProperty("/notes", notes.push(this._newNote()));
+        };
+        NoteEdit.prototype._newNote = function () {
+            var note = this.getModel("view").getProperty("/note");
+            return Object.assign({}, note);
         };
         NoteEdit.routeName = "note-edit";
         NoteEdit = __decorate([

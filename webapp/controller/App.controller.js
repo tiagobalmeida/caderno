@@ -1,5 +1,5 @@
 sap.ui.define([
-	"jz/caderno/controller/Base.controller"
+	"jz/caderno/controller/BaseController"
 ], function(BaseController) {
 	"use strict";
 

@@ -1,0 +1,17 @@
+<mvc:View
+	height="100%"
+	width="100%"
+	controllerName="jz.caderno.controller.Test"
+	xmlns="sap.m"
+    xmlns:f="sap.ui.layout.form"
+	xmlns:l="sap.ui.layout"
+	xmlns:mvc="sap.ui.core.mvc"
+	xmlns:core="sap.ui.core"
+	xmlns:cust="jz.caderno.control">
+  <Page showHeader="true"
+		class="sapUiNoContentPadding">
+    <content>
+	  <Label text="Test page" />
+    </content>
+  </Page>
+</mvc:View>

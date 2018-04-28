@@ -14,7 +14,7 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
     else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
-define(["require", "exports", "sap/ui/core/UIComponent"], function (require, exports, UIComponent_1) {
+define(["require", "exports", "sap/ui/core/UIComponent", "sap/ui/model/json/JSONModel"], function (require, exports, UIComponent_1, JSONModel_1) {
     "use strict";
     Object.defineProperty(exports, "__esModule", { value: true });
     var Component = /** @class */ (function (_super) {
@@ -25,12 +25,19 @@ define(["require", "exports", "sap/ui/core/UIComponent"], function (require, exp
         Component.prototype.init = function () {
             // call the base component's init function
             UIComponent_1.default.prototype.init.apply(this, arguments);
+            // set the data model
+            this.initDataModel();
             // enable routing
             this.getRouter().initialize();
             // set the device model
             // this.setModel(models.createDeviceModel(), "device");
             // set the appSettings model
             // this.setModel(models.createAppSettingsModel(), "appSettings");
+        };
+        Component.prototype.initDataModel = function () {
+            this.setModel(new JSONModel_1.default({
+                notes: [{ name: "a", isSelected: false }]
+            }, false), "data");
         };
         Component.metadata = {
             manifest: "json"

@@ -33,9 +33,6 @@ export default class BaseController extends Controller {
     // ============================================================
     // Utility methods
     // ============================================================
-    getModel(name) {
-        return super.getView().getModel(name);
-    }
 
     getRouter() {
         return this.getOwnerComponent().getRouter();
@@ -47,6 +44,29 @@ export default class BaseController extends Controller {
 
     todo() {
         alert("Oops! that isn't done yet.");
+    }
+
+    /**
+     * Convenience method for setting the view model in every controller of the application.
+     * @public
+     * @param {sap.ui.model.Model} oModel the model instance
+     * @param {string} sName the model name
+     * @returns {sap.ui.core.mvc.View} the view instance
+     */
+    public setModel(oModel: sap.ui.model.Model, sName?: string|undefined): sap.ui.core.mvc.View {
+        let view = this.getView();
+        view.setModel(oModel, sName);
+        return view;
+    }
+
+    /**
+     * Convenience method for getting the view model by name in every controller of the application.
+     * @public
+     * @param {string} sName the model name
+     * @returns {sap.ui.model.Model} the model instance
+     */
+    public getModel<T extends sap.ui.model.Model = sap.ui.model.Model>(sName?: string): T {
+        return <T>this.getView().getModel(sName);
     }
 
 }
