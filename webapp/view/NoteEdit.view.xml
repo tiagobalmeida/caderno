@@ -30,7 +30,7 @@
 		  singleContainerFullSize="false" >
         <Input text="{view>note/name}" placeholder="{i18n>note.edit.name.placeholder}" />
       </f:SimpleForm>
-      <cust:Simplemde />
+      <cust:Simplemde save="doSaveNote"/>
     </content>
   </Page>
 </mvc:View>
