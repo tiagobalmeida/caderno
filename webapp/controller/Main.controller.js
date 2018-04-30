@@ -29,4 +29,3 @@ define(["require", "exports", "jz/caderno/controller/BaseController"], function 
     }(BaseController_1.default));
     exports.default = Main;
 });
-//# sourceMappingURL=Main.controller.js.map

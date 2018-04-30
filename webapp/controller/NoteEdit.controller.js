@@ -14,7 +14,7 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
     else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
-define(["require", "exports", "jz/caderno/controller/BaseController"], function (require, exports, BaseController_1) {
+define(["require", "exports", "jz/caderno/controller/BaseController", "jz/caderno/util/Constants"], function (require, exports, BaseController_1, Constants_1) {
     "use strict";
     Object.defineProperty(exports, "__esModule", { value: true });
     var NoteEdit = /** @class */ (function (_super) {
@@ -22,26 +22,42 @@ define(["require", "exports", "jz/caderno/controller/BaseController"], function 
         function NoteEdit() {
             return _super !== null && _super.apply(this, arguments) || this;
         }
+        NoteEdit.prototype.onInit = function () {
+            // Initialize the view model (view properties)
+            _super.prototype.onInit.call(this);
+            var model = this.getViewModel();
+            model.setProperty("/note", {
+                name: "",
+                content: ""
+            });
+        };
         NoteEdit.prototype.onRouteMatched = function (oEvent) {
             var args = oEvent.getParameters();
-            if (args.noteId === _super.prototype.Constants.NOTE_ID_NEW) {
+            if (args.noteId === Constants_1.default.NOTE_ID_NEW) {
             }
         };
         // ============================================================
         // User Action handlers. They should all start with "do"
         // ============================================================
-        NoteEdit.prototype.doSaveNote = function () {
+        NoteEdit.prototype.doSaveNote = function (oEvent) {
             // To save a note, we first determine where to save it.
             // This is stored in the AppSettings model.
             var settings = this.AppSettings;
-            if (settings.save.method === this.Constants.NOTE_SAVE_METHOD_REST) {
-            }
-            var dataModel = this.getModel("data");
+            //if (settings.save.method === Constants.NOTE_SAVE_METHOD_REST){
+            //}
+            var dataModel = _super.prototype.getModel.call(this, "data");
             var notes = dataModel.getProperty("/notes");
-            dataModel.setProperty("/notes", notes.push(this._newNote()));
+            var content = oEvent.getParameters().content;
+            var name = this.getViewModel().getProperty("/note/name");
+            notes = notes.concat(this._newNote(name, content));
+            dataModel.setProperty("/notes", notes);
         };
-        NoteEdit.prototype._newNote = function () {
-            var note = this.getModel("view").getProperty("/note");
+        NoteEdit.prototype._newNote = function (name, content) {
+            var note = {
+                name: name,
+                content: content,
+                isSelected: false
+            };
             return Object.assign({}, note);
         };
         NoteEdit.routeName = "note-edit";
@@ -52,4 +68,3 @@ define(["require", "exports", "jz/caderno/controller/BaseController"], function 
     }(BaseController_1.default));
     exports.default = NoteEdit;
 });
-//# sourceMappingURL=NoteEdit.controller.js.map

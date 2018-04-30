@@ -15,4 +15,3 @@ define(["require", "exports"], function (require, exports) {
     }());
     exports.default = Service;
 });
-//# sourceMappingURL=Service.js.map

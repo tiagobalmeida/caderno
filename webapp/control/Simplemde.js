@@ -27,6 +27,9 @@ sap.ui.define([
                     properties: {
                       placeholderText: {
                         type: "String", defaultValue: "Type your note here..."
+                      },
+                      content: {
+                        type: "String"
                       }
                     },
                     events: {
@@ -81,7 +84,7 @@ sap.ui.define([
                       "guide",
                       {
                         name: "save",
-                        action: that.onSave,
+                        action: that.onSave.bind(that),
                         className: "fa fa-save", title: "Save"}
                     ];
                     return toolbar;
@@ -131,8 +134,9 @@ sap.ui.define([
 	              tabSize: 4,
                       toolbar: this._simplemdeToolbar()
                     });
+                    this._simplemde = simplemde;
                   }
 
                 });
-                this._simplemde = simplemde;
+                //
               });

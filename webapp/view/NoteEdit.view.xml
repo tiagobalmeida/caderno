@@ -9,8 +9,8 @@
 	xmlns:core="sap.ui.core"
 	xmlns:cust="jz.caderno.control">
   <Page id="topicDetailPage"
-		showHeader="false"
-		class="sapUiNoContentPadding">
+	showHeader="false"
+	class="sapUiNoContentPadding">
     <content>
       <f:SimpleForm
           layout="ResponsiveGridLayout"
@@ -28,9 +28,14 @@
 		  columnsL="1"
 		  columnsM="1"
 		  singleContainerFullSize="false" >
-        <Input text="{view>note/name}" placeholder="{i18n>note.edit.name.placeholder}" />
+        <Input value="{view>/note/name}" placeholder="{i18n>note.edit.name.placeholder}" />
       </f:SimpleForm>
-      <cust:Simplemde save="doSaveNote"/>
+
+
+      <cust:Simplemde
+          content="{view>/note/content}"
+          save="doSaveNote" />
+
     </content>
   </Page>
 </mvc:View>

@@ -6,11 +6,10 @@ import Constants  from "jz/caderno/util/Constants";
 @UI5("jz.caderno.controller.BaseController")
 export default class BaseController extends Controller {
 
-    routeName: String;
-    AppSettings: Model;
-    Constants: Constants;
+    protected routeName: String;
+    protected AppSettings: Model;
 
-    init() {
+    onInit() {
         // Initialize the view model (view properties)
         super.getView().setModel(new JSONModel({}, false), "view");
         // Set handler for the route.
@@ -18,7 +17,10 @@ export default class BaseController extends Controller {
                                             this.onRouteMatched);
         // Initialize controller level shortcuts
         this.AppSettings = this.getModel("AppSettings");
-        this.Constants = Constants;
+    }
+
+    getViewModel():sap.ui.model.json.JSONModel {
+        return <sap.ui.model.json.JSONModel>super.getView().getModel("view");
     }
 
     // ============================================================
@@ -26,7 +28,7 @@ export default class BaseController extends Controller {
     // ============================================================
     doCreateNote() {
         this.getRouter().navTo("note-edit", {
-            noteId: this.Constants.NOTE_ID_NEW
+            noteId: Constants.NOTE_ID_NEW
         });
     }
 

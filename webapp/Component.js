@@ -49,4 +49,3 @@ define(["require", "exports", "sap/ui/core/UIComponent", "sap/ui/model/json/JSON
     }(UIComponent_1.default));
     exports.default = Component;
 });
-//# sourceMappingURL=Component.js.map

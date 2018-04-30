@@ -121,8 +121,8 @@
 	                "viewLevel": 2
 	            },
                 "noteEdit":{
-                    "viewName": "NoteEdit",
-	                "viewLevel": 2
+                  "viewName": "NoteEdit",
+	          "viewLevel": 2
                 },
                 "settings":{
                     "viewName": "Settings",

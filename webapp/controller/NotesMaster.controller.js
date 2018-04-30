@@ -34,4 +34,3 @@ define(["require", "exports", "jz/caderno/controller/BaseController"], function 
     }(BaseController_1.default));
     exports.default = NotesMaster;
 });
-//# sourceMappingURL=NotesMaster.controller.js.map
