@@ -31,7 +31,6 @@
         <Input value="{view>/note/name}" placeholder="{i18n>note.edit.name.placeholder}" />
       </f:SimpleForm>
 
-
       <cust:Simplemde
           content="{view>/note/content}"
           save="doSaveNote" />

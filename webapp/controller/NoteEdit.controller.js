@@ -14,7 +14,7 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
     else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
-define(["require", "exports", "jz/caderno/controller/BaseController", "jz/caderno/util/Constants"], function (require, exports, BaseController_1, Constants_1) {
+define(["require", "exports", "jz/caderno/controller/BaseController", "jz/caderno/util/Constants", "jz/caderno/util/Navigator"], function (require, exports, BaseController_1, Constants_1, Navigator_1) {
     "use strict";
     Object.defineProperty(exports, "__esModule", { value: true });
     var NoteEdit = /** @class */ (function (_super) {
@@ -25,11 +25,14 @@ define(["require", "exports", "jz/caderno/controller/BaseController", "jz/cadern
         NoteEdit.prototype.onInit = function () {
             // Initialize the view model (view properties)
             _super.prototype.onInit.call(this);
+            // Set handler for the route.
+            this.getRouter().attachRouteMatched(this.routeName, this.onRouteMatched);
             var model = this.getViewModel();
             model.setProperty("/note", {
                 name: "",
                 content: ""
             });
+            this.navigate = new Navigator_1.default(this);
         };
         NoteEdit.prototype.onRouteMatched = function (oEvent) {
             var args = oEvent.getParameters();
@@ -51,6 +54,8 @@ define(["require", "exports", "jz/caderno/controller/BaseController", "jz/cadern
             var name = this.getViewModel().getProperty("/note/name");
             notes = notes.concat(this._newNote(name, content));
             dataModel.setProperty("/notes", notes);
+            //
+            this.navigate.toNoteRead(1);
         };
         NoteEdit.prototype._newNote = function (name, content) {
             var note = {

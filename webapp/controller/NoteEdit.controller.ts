@@ -1,5 +1,6 @@
 import BaseController from "jz/caderno/controller/BaseController"
 import Constants  from "jz/caderno/util/Constants";
+import Navigator from "jz/caderno/util/Navigator";
 
 
 @UI5("jz.caderno.controller.NoteEdit")
@@ -7,14 +8,20 @@ export default class NoteEdit extends BaseController {
 
     static readonly routeName = "note-edit";
 
+    protected navigate:Navigator;
+
     onInit() {
         // Initialize the view model (view properties)
         super.onInit();
+        // Set handler for the route.
+        this.getRouter().attachRouteMatched(this.routeName,
+                                            this.onRouteMatched);
         var model = this.getViewModel();
         model.setProperty("/note", {
             name: "",
             content: ""
         });
+        this.navigate = new Navigator(this);
     }
 
     onRouteMatched(oEvent:any) {
@@ -41,6 +48,9 @@ export default class NoteEdit extends BaseController {
         var name = <string>this.getViewModel().getProperty("/note/name");
         notes = notes.concat(this._newNote(name, content));
         dataModel.setProperty("/notes", notes);
+        //
+        this.navigate.toNoteRead(1);
+
     }
 
     _newNote(name:string, content:string):any {

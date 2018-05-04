@@ -139,4 +139,5 @@ sap.ui.define([
 
                 });
                 //
+                return editor;
               });

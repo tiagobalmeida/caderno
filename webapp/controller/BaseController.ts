@@ -12,9 +12,6 @@ export default class BaseController extends Controller {
     onInit() {
         // Initialize the view model (view properties)
         super.getView().setModel(new JSONModel({}, false), "view");
-        // Set handler for the route.
-        this.getRouter().attachRouteMatched(this.routeName,
-                                            this.onRouteMatched);
         // Initialize controller level shortcuts
         this.AppSettings = this.getModel("AppSettings");
     }
@@ -36,8 +33,13 @@ export default class BaseController extends Controller {
     // Utility methods
     // ============================================================
 
-    getRouter() {
-        return this.getOwnerComponent().getRouter();
+    /**
+     * Convenience method for accessing the router in every controller of the application.
+     * @public
+     * @returns {sap.ui.core.routing.Router} the router for this component
+     */
+    public getRouter(): sap.ui.core.routing.Router {
+        return (<sap.ui.core.UIComponent>this.getOwnerComponent()).getRouter();
     }
 
     getAppSettings(){
