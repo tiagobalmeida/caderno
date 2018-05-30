@@ -3,55 +3,79 @@ import Note from "jz/caderno/domain/Note";
 export default class Drive {
 
     protected rootFolderId: string;
+    protected _loadedLib: Promise<any> | null;
+    protected static discoveryDocs = ["https://www.googleapis.com/discovery/v1/apis/drive/v3/rest"];
     protected static apiKey: string;
     protected static clientId: string;
-    protected static _instance: Drive;
+    protected static _instance: Drive | null = null;
+    protected static scopes = "https://www.googleapis.com/auth/drive.file";
 
 
     public static configure(apiKey: string, clientId: string) {
         Drive.apiKey = apiKey;
         Drive.clientId = clientId;
+        jQuery.sap.log.info("Drive support configured.");
+    }
+
+
+    constructor() {
+        this._loadedLib = null;
     }
 
 
     public static getInstance(): Drive {
-        if (this._instance === null) {
-            this._instance = new Drive();
+        if (Drive._instance === null) {
+            Drive._instance = new Drive();
         }
-        return this._instance;
+        return Drive._instance;
     }
 
-    protected loadLibraries() {
+
+    public loadLibraries() {
+        if (this._loadedLib !== null) {
+            return this._loadedLib;
+        }
         var loadedPromise = new Promise(function(resolve, reject) {
             var newScript = document.createElement('script');
             newScript.src = "https://apis.google.com/js/api.js";
             newScript.defer = true;
             newScript.onload = function() {
-                resolve();
+                resolve(gapi);
             }
             var firstScriptTag = document.getElementsByTagName('script')[0];
             firstScriptTag.parentNode.insertBefore(newScript, firstScriptTag);
         });
+        this._loadedLib = loadedPromise;
         return loadedPromise;
     }
 
 
     public authorize() {
-        gapi.client.init({
-            apiKey: this.apiKey,
-            clientId: this.clientId,
-            discoveryDocs: this.discoveryDocs,
-            scope: this.scopes,
-        }).then(function() {
+        var p = new Promise(function(resolve, reject){
+            gapi.load('client:auth2', function(){
+                gapi.client.init({
+                    apiKey: Drive.apiKey,
+                    clientId: Drive.clientId,
+                    discoveryDocs: Drive.discoveryDocs,
+                    scope: Drive.scopes,
+                }).then(function(){
+                    resolve();
+                });
+            });
+        });
+        return p;
+            //
+          //  .then(function() {
             // Listen for sign-in state changes.
-            gapi.auth2.getAuthInstance().isSignedIn.listen(updateSigninStatus);
+            //gapi.auth2.getAuthInstance().isSignedIn.listen(updateSigninStatus);
 
             // Handle the initial sign-in state.
-            updateSigninStatus(gapi.auth2.getAuthInstance().isSignedIn.get());
-            authorizeButton.onclick = handleAuthClick;
-            signoutButton.onclick = handleSignoutClick;
-        });
+            //updateSigninStatus(gapi.auth2.getAuthInstance().isSignedIn.get());
+            //authorizeButton.onclick = handleAuthClick;
+            //signoutButton.onclick = handleSignoutClick;
+        //});
     }
+
 
     public createRootFolder() {
         var parentId = '';

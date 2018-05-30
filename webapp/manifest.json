@@ -109,6 +109,11 @@
           "pattern": "test",
 	  "name": "test",
 	  "target": ["notesMaster", "test"]
+        },
+        {
+          "pattern": "drive-authorize",
+	  "name": "driveAuthorize",
+	  "target": ["notesMaster", "driveAuthorize"]
         }
       ],
       "targets": {
@@ -125,6 +130,10 @@
 	  "viewId": "notesDetailInitial",
 	  "viewLevel": 2
 	},
+        "driveAuthorize":{
+          "viewName": "DriveLogin",
+          "viewLevel": 2
+        },
         "noteEdit":{
           "viewName": "NoteEdit",
 	  "viewLevel": 2
