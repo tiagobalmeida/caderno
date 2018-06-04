@@ -1,6 +1,8 @@
 import BaseController from "jz/caderno/controller/BaseController"
 import Constants  from "jz/caderno/util/Constants";
 import Navigator from "jz/caderno/util/Navigator";
+import Note from "jz/caderno/domain/Note";
+import Drive from "jz/caderno/storage/Drive";
 
 
 @UI5("jz.caderno.controller.NoteEdit")
@@ -39,27 +41,39 @@ export default class NoteEdit extends BaseController {
         // To save a note, we first determine where to save it.
         // This is stored in the AppSettings model.
         var settings = this.AppSettings;
-        //if (settings.save.method === Constants.NOTE_SAVE_METHOD_REST){
-
-        //}
         var dataModel = super.getModel<sap.ui.model.json.JSONModel>("data");
         var notes = <Array<any>>dataModel.getProperty("/notes");
         var content = oEvent.getParameters().content;
         var name = <string>this.getViewModel().getProperty("/note/name");
-        notes = notes.concat(this._newNote(name, content));
+        var note = this._newNote(name, content);
+        notes = notes.concat(note);
         dataModel.setProperty("/notes", notes);
-        //
-        this.navigate.toNoteRead(1);
+        // Save note on Drive
+        var drive = Drive.getInstance();
+        var that = this;
+        drive.initialize().then(function(){
+            drive.createFile(note.title)
+                .then(that.onDriveCreated,
+                      that.onDriveFail);
+        });
+        //this.navigate.toNoteRead(1);
 
     }
 
-    _newNote(name:string, content:string):any {
-        var note = {
-            name: name,
-            content: content,
-            isSelected: false
-        };
-        return Object.assign({}, note);
+
+    onDriveCreated(value:any) {
+        console.log("Note saved on google drive.");
+    }
+
+    onDriveFail(value:any) {
+        console.log("Note failed to save.");
+    }
+
+    _newNote(name:string, content:string):Note {
+        var note = new Note();
+        note.title = name;
+        note.content = content;
+        return note;
     }
 
 }

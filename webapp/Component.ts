@@ -33,10 +33,13 @@ export default class Component extends UIComponent {
     }
 
     private initDrive(): void {
-        var apiKey = "AIzaSyAkmmV6hN6pWqZAWBrdsLvf0BxRMiqoBcE";
-        var clientId = "382123780150-3s9d4u1hrctb84senr7h0tono5ea976a.apps.googleusercontent.com";
-        Drive.configure(apiKey, clientId);
+        var clientId = "382123780150-nf8ku41gcgt7gnqtc358v1tquq8r931n.apps.googleusercontent.com";
+        Drive.configure(clientId);
         var d = Drive.getInstance();
-        d.loadLibraries();
+        d.loadLibraries().then(
+            function(){
+                d.initialize();
+            }
+        );
     }
 }

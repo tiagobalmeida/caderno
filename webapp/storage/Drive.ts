@@ -1,18 +1,16 @@
-import Note from "jz/caderno/domain/Note";
-
 export default class Drive {
 
+
+    public static initialized: Promise<any> | null = null;
     protected rootFolderId: string;
-    protected _loadedLib: Promise<any> | null;
+    protected _loadedLib: Promise<any> | null = null;
     protected static discoveryDocs = ["https://www.googleapis.com/discovery/v1/apis/drive/v3/rest"];
-    protected static apiKey: string;
     protected static clientId: string;
     protected static _instance: Drive | null = null;
     protected static scopes = "https://www.googleapis.com/auth/drive.file";
 
 
-    public static configure(apiKey: string, clientId: string) {
-        Drive.apiKey = apiKey;
+    public static configure(clientId: string) {
         Drive.clientId = clientId;
         jQuery.sap.log.info("Drive support configured.");
     }
@@ -40,6 +38,7 @@ export default class Drive {
             newScript.src = "https://apis.google.com/js/api.js";
             newScript.defer = true;
             newScript.onload = function() {
+                console.log("Drive: api.js onload (loadLibraries)");
                 resolve(gapi);
             }
             var firstScriptTag = document.getElementsByTagName('script')[0];
@@ -50,20 +49,29 @@ export default class Drive {
     }
 
 
-    public authorize() {
-        var p = new Promise(function(resolve, reject){
-            gapi.load('client:auth2', function(){
-                gapi.client.init({
-                    apiKey: Drive.apiKey,
-                    clientId: Drive.clientId,
-                    discoveryDocs: Drive.discoveryDocs,
-                    scope: Drive.scopes,
-                }).then(function(){
-                    resolve();
+    public initialize() {
+        if(Drive.initialized === null){
+            var p = new Promise(function(resolve, reject){
+                gapi.load('client:auth2', function(){
+                    console.log("Drive: gapi.load callback called");
+                    gapi.client.init({
+                        apiKey: "AIzaSyAUN7sfg1QhdDBK3-7kIMqoFT7miI-0G68",
+                        clientId: Drive.clientId,
+                        discoveryDocs: Drive.discoveryDocs,
+                        scope: Drive.scopes,
+                    }).then(function(){
+                        console.log("Drive: gapi.client.init resolved");
+                        gapi.auth2.getAuthInstance().isSignedIn.listen(
+                            function(){
+                                console.log("Drive: isSignedIn triggered");
+                            });
+                        resolve();
+                    });
                 });
             });
-        });
-        return p;
+            Drive.initialized = p;
+        }
+        return Drive.initialized;
             //
           //  .then(function() {
             // Listen for sign-in state changes.
@@ -102,10 +110,11 @@ export default class Drive {
     }
 
 
-    public createNote(note: Note) {
+    public createFile(name:string) : Promise<any> {
         var parentFolderId = this.rootFolderId;
+        parentFolderId = "16rfKEglAo9PJExDhVSf4b0giDHWMR7Sr";
         var fileMetadata = {
-            name: note.title,
+            name: name,
             parents: [parentFolderId]
         };
         var media = {
@@ -125,19 +134,22 @@ export default class Drive {
     }
 
 
-    public updateFileContent(note: Note, callback) {
-        var xhr = new XMLHttpRequest();
-        xhr.responseType = 'json';
-        xhr.onreadystatechange = function() {
-            if (xhr.readyState != XMLHttpRequest.DONE) {
-                return;
-            }
-            callback(xhr.response);
-        };
-        xhr.open('PATCH', 'https://www.googleapis.com/upload/drive/v3/files/' + fileId + '?uploadType=media');
-        xhr.setRequestHeader('Authorization', 'Bearer ' + gapi.auth.getToken().access_token);
-        xhr.setRequestHeader('Content-Type', 'text/html; charset=utf-8');
-        xhr.send(contentBlob);
+    public updateFileContent(content:string, fileId:string) {
+        var p = new Promise(function(resolve, reject){
+            var xhr = new XMLHttpRequest();
+            xhr.responseType = 'json';
+            xhr.onreadystatechange = function() {
+                if (xhr.readyState != XMLHttpRequest.DONE) {
+                    return;
+                }
+                resolve(xhr.response);
+            };
+            xhr.open('PATCH', 'https://www.googleapis.com/upload/drive/v3/files/' + fileId + '?uploadType=media');
+            xhr.setRequestHeader('Authorization', 'Bearer ' + gapi.auth.getToken().access_token);
+            xhr.setRequestHeader('Content-Type', 'text/html; charset=utf-8');
+            xhr.send(content);
+        });
+        return p;
     }
 
 }
