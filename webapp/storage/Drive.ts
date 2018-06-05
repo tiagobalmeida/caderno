@@ -1,17 +1,17 @@
 export default class Drive {
 
-
     public static initialized: Promise<any> | null = null;
     protected rootFolderId: string;
     protected _loadedLib: Promise<any> | null = null;
     protected static discoveryDocs = ["https://www.googleapis.com/discovery/v1/apis/drive/v3/rest"];
-    protected static clientId: string;
-    protected static _instance: Drive | null = null;
     protected static scopes = "https://www.googleapis.com/auth/drive.file";
+    protected static clientId: string;
+    protected static apiKey: string;
+    protected static _instance: Drive | null = null;
 
-
-    public static configure(clientId: string) {
+    public static configure(clientId: string, apiKey: string) {
         Drive.clientId = clientId;
+        Drive.apiKey = apiKey;
         jQuery.sap.log.info("Drive support configured.");
     }
 
@@ -55,7 +55,7 @@ export default class Drive {
                 gapi.load('client:auth2', function(){
                     console.log("Drive: gapi.load callback called");
                     gapi.client.init({
-                        apiKey: "AIzaSyAUN7sfg1QhdDBK3-7kIMqoFT7miI-0G68",
+                        apiKey: Drive.apiKey,
                         clientId: Drive.clientId,
                         discoveryDocs: Drive.discoveryDocs,
                         scope: Drive.scopes,
@@ -112,7 +112,7 @@ export default class Drive {
 
     public createFile(name:string) : Promise<any> {
         var parentFolderId = this.rootFolderId;
-        parentFolderId = "16rfKEglAo9PJExDhVSf4b0giDHWMR7Sr";
+        parentFolderId = "16rfKEglAo9PJExDhVSf4b0giDHWMR7Sr"; // TODO
         var fileMetadata = {
             name: name,
             parents: [parentFolderId]

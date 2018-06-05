@@ -49,25 +49,16 @@ export default class NoteEdit extends BaseController {
         notes = notes.concat(note);
         dataModel.setProperty("/notes", notes);
         // Save note on Drive
-        var drive = Drive.getInstance();
+
         var that = this;
-        drive.initialize().then(function(){
-            drive.createFile(note.title)
-                .then(that.onDriveCreated,
-                      that.onDriveFail);
-        });
+        note.save();
+
         //this.navigate.toNoteRead(1);
 
     }
 
 
-    onDriveCreated(value:any) {
-        console.log("Note saved on google drive.");
-    }
 
-    onDriveFail(value:any) {
-        console.log("Note failed to save.");
-    }
 
     _newNote(name:string, content:string):Note {
         var note = new Note();

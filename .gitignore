@@ -17,3 +17,10 @@ webapp/model/models.js.map
 webapp/util/Constants.js
 webapp/util/Constants.js.map
 webapp/util/Service.js.map
+webapp/controller/Base.controller.js.map
+webapp/controller/DriveLogin.controller.js
+webapp/domain/Note.js
+node_modules
+webapp/storage/Drive.js
+webapp/storage/creds.json
+webapp/util/constants.js.map
