@@ -22,7 +22,7 @@ export default class Drive {
 
 
     public static getInstance(): Drive {
-        if (Drive._instance === null) {
+        if (Drive._instance === null || Drive._instance === undefined) {
             Drive._instance = new Drive();
         }
         return Drive._instance;

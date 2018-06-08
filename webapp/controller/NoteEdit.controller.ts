@@ -38,20 +38,26 @@ export default class NoteEdit extends BaseController {
     // User Action handlers. They should all start with "do"
     // ============================================================
     doSaveNote(oEvent:any):void {
-        // To save a note, we first determine where to save it.
-        // This is stored in the AppSettings model.
         var settings = this.AppSettings;
         var dataModel = super.getModel<sap.ui.model.json.JSONModel>("data");
         var notes = <Array<any>>dataModel.getProperty("/notes");
         var content = oEvent.getParameters().content;
+        var viewModel = this.getViewModel();
         var name = <string>this.getViewModel().getProperty("/note/name");
-        var note = this._newNote(name, content);
-        notes = notes.concat(note);
-        dataModel.setProperty("/notes", notes);
-        // Save note on Drive
-
+        if(!viewModel.getProperty("/currentNote")){
+            var note = this._newNote(name, content);
+            notes = notes.concat(note);
+            dataModel.setProperty("/notes", notes);
+            viewModel.setProperty("/currentNote", note);
+        }else{
+            note = <Note>viewModel.getProperty("/currentNote");
+            note.title = name;
+            note.content = content;
+        }
         var that = this;
         note.save();
+
+
 
         //this.navigate.toNoteRead(1);
 
@@ -61,7 +67,7 @@ export default class NoteEdit extends BaseController {
 
 
     _newNote(name:string, content:string):Note {
-        var note = new Note();
+        var note = new Note(this.getOwnerComponent());
         note.title = name;
         note.content = content;
         return note;
