@@ -34,7 +34,7 @@ export default class Component extends UIComponent {
 
     private initDrive(): void {
         var clientId = "382123780150-kcqmtbn64bg5m842kkd36borad6hsbd0.apps.googleusercontent.com";
-        var apiKey = "AIzaSyCCtzZbR3BICWhpYSMe5OSIbGOVAPcaOxU";
+        //var apiKey = "TIXME";
 
         Drive.configure(clientId, apiKey);
         var d = Drive.getInstance();
