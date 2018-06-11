@@ -1,14 +1,20 @@
 {
     "compilerOptions": {
         "target": "es5",
-        "module": "amd",
+        "lib": [
+            "dom",
+            "es2015",
+            "es5",
+            "es6"
+        ],
+	"module": "amd",
         "experimentalDecorators": true,
         "alwaysStrict": true,
         "noImplicitAny": true,
         "strictNullChecks": true,
         "noImplicitReturns": true,
         "noImplicitThis": true,
-      "sourceMap": false,
+	"sourceMap": false,
         "baseUrl": "./",
         "paths": {
             "jz/caderno/*": [ "./webapp/*" ],

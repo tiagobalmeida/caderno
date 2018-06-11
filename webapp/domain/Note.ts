@@ -20,11 +20,20 @@ export default class Note {
 
     public save(){
         this.browserSave();
-        this.driveSave();
+        //this.driveSave();
     }
 
     public browserSave(){
+        var that = this;
         var storage = BrowserStorage.getInstance(this.component);
+        if(this.localFileId === "") {
+            storage.createFile(this.title).then(function(fileId){
+                storage.updateFileContent(that.content, fileId);
+                that.localFileId = fileId;
+            });
+        }else{
+            storage.updateFileContent(that.content, that.localFileId);
+        }
     }
 
     public driveSave(){
