@@ -46,8 +46,6 @@ export default class NoteEdit extends BaseController {
         var name = <string>this.getViewModel().getProperty("/note/name");
         if(!viewModel.getProperty("/currentNote")){
             var note = this._newNote(name, content);
-            notes = notes.concat(note);
-            dataModel.setProperty("/notes", notes);
             viewModel.setProperty("/currentNote", note);
         }else{
             note = <Note>viewModel.getProperty("/currentNote");

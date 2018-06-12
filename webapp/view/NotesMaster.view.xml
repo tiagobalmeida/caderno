@@ -21,19 +21,19 @@
     </customHeader>
 
     <content>
-      <Tree
+      <List
 	  id="tree"
 	  mode="SingleSelectMaster"
 	  selectionChange="onNodeSelect"
 	  items="{ path: 'data>/notes' }">
-	<StandardTreeItem
+	<StandardListItem
 	    title="{data>title}"
 	    selected="{data>isSelected}">
 	  <customData>
 	    <core:CustomData key="nodeId" value="TODO" />
 	  </customData>
-	</StandardTreeItem>
-      </Tree>
+	</StandardListItem>
+      </List>
 
     </content>
 

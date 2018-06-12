@@ -28,7 +28,7 @@ export default class Component extends UIComponent {
 
     private initDataModel(): void {
         this.setModel(new JSONModel({
-            notes: [{name:"a", isSelected: false}]
+            notes: [{title:"Welcome", isSelected: false}]
         }, false), "data");
     }
 

@@ -27,7 +27,7 @@ export default class Note {
         var that = this;
         var storage = BrowserStorage.getInstance(this.component);
         if(this.localFileId === "") {
-            storage.createFile(this.title).then(function(fileId){
+            storage.createFile(this).then(function(fileId){
                 storage.updateFileContent(that.content, fileId);
                 that.localFileId = fileId;
             });
@@ -37,7 +37,7 @@ export default class Note {
     }
 
     public driveSave(){
-        if(this.fileId === ""){
+        if(this.driveFileId === ""){
             console.log("Note: Creating a new file");
             return this.driveNewFileSave();
         }else{

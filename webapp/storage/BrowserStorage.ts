@@ -16,9 +16,10 @@ export default class BrowserStorage {
     public initialize() {
     }
 
-    public createFile(name:string) : Promise<string>{
+    public createFile(note:Note) : Promise<string>{
         var that = this;
         var id:string = "";
+
         var p = new Promise<string>(function(resolve, reject){
             var dataModel = that.component.getModel("data");
             if(dataModel === undefined) {
@@ -26,6 +27,7 @@ export default class BrowserStorage {
             }
             var notes = <Array<Note>>dataModel.getProperty("/notes");
             id = notes.length.toString();
+            notes.push(note);
             // return a resolved promise as this is a synchronous operation.
             resolve(id);
         });
@@ -43,6 +45,5 @@ export default class BrowserStorage {
         });
         return p;
     }
-
 
 }
