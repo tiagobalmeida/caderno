@@ -18,6 +18,19 @@ export default class Note {
         this.component = component;
     }
 
+    /**
+     * Returns an object with only the data fields.
+     **/
+    public exportPlain():any {
+        return {
+            title: this.title,
+            content: this.content,
+            localFileId: this.localFileId,
+            driveFileId: this.driveFileId,
+            savedOnDrive: this.savedOnDrive
+        };
+    }
+
     public save(){
         this.browserSave();
         //this.driveSave();
