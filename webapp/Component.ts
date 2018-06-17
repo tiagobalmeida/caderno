@@ -19,7 +19,7 @@ export default class Component extends UIComponent {
         this.initDrive();
         // enable local model support
         this.initBrowserStorage();
-        this.importNotesFromBrowserStorage();
+        this.createWelcomeNote();
         // enable routing
         this.getRouter().initialize();
         // set the device model
@@ -28,9 +28,13 @@ export default class Component extends UIComponent {
         // this.setModel(models.createAppSettingsModel(), "appSettings");
     }
 
-    private initBrowserStorage(): void {
+    protected initBrowserStorage(): void {
         var that = this;
         var storage = new BrowserStorage(this);
+        // storage.initialize takes a function used to
+        // transform the plain object from local storage
+        // before being put into the model. We use this
+        // to convert into proper Note instances.
         storage.initialize((n:any) => {
             var note = new Note(that);
             note.title = n.title;
@@ -39,11 +43,15 @@ export default class Component extends UIComponent {
         });
     }
 
-    protected importNotesFromBrowserStorage(): void {
-
+    protected createWelcomeNote(): void {
+        var storage = BrowserStorage.getInstance(this);
+        var note = new Note(this);
+        note.title = "Welcome";
+        note.content = "";
+        storage.createFile(note);
     }
 
-    private initDrive(): void {
+    protected initDrive(): void {
         var clientId = "382123780150-kcqmtbn64bg5m842kkd36borad6hsbd0.apps.googleusercontent.com";
         var apiKey = "TIXME";
 
