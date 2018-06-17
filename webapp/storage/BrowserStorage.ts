@@ -1,5 +1,5 @@
-//import Note from "jz/caderno/domain/Note";
 import JSONModel from "sap/ui/model/json/JSONModel";
+
 
 export default class BrowserStorage {
 
@@ -16,7 +16,7 @@ export default class BrowserStorage {
     /**
      * Initializes itself from local storage
      **/
-    public initialize() {
+    public initialize(noteTransformer: (n:any) => any) {
         // make sure there is a data model.
         var model = this.component.getModel("data");
         if(!model){
@@ -31,7 +31,7 @@ export default class BrowserStorage {
             if (data) {
                 dataParsed = JSON.parse(data);
                 // convert them to Note instances
-                dataParsed = dataParsed.map(n => this.importNote(n));
+                dataParsed = dataParsed.map((n:any) => noteTransformer(n));
             } else {
                 dataParsed = [];
             }

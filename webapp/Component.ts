@@ -3,6 +3,7 @@ import models from "jz/caderno/model/models";
 import JSONModel from "sap/ui/model/json/JSONModel";
 import Drive from "jz/caderno/storage/Drive";
 import BrowserStorage from "jz/caderno/storage/BrowserStorage";
+import Note from "jz/caderno/domain/Note";
 
 
 @UI5("jz.caderno.Component")
@@ -14,12 +15,11 @@ export default class Component extends UIComponent {
     public init(): void {
         // call the base component's init function
         UIComponent.prototype.init.apply(this, arguments);
-        // set the data model
-        BrowserStorage.getInstance(this).initialize();
         // enable Google Drive support
         this.initDrive();
         // enable local model support
         this.initBrowserStorage();
+        this.importNotesFromBrowserStorage();
         // enable routing
         this.getRouter().initialize();
         // set the device model
@@ -29,8 +29,18 @@ export default class Component extends UIComponent {
     }
 
     private initBrowserStorage(): void {
+        var that = this;
         var storage = new BrowserStorage(this);
-        storage.initialize();
+        storage.initialize((n:any) => {
+            var note = new Note(that);
+            note.title = n.title;
+            note.content = n.content;
+            return note;
+        });
+    }
+
+    protected importNotesFromBrowserStorage(): void {
+
     }
 
     private initDrive(): void {

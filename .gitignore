@@ -24,3 +24,7 @@ node_modules
 webapp/storage/Drive.js
 webapp/storage/creds.json
 webapp/util/constants.js.map
+Component.js
+controller/#Main.controller.js#
+controller/NoteEdit.controller.js
+storage/BrowserStorage.js

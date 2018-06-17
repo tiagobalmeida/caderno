@@ -1,5 +1,5 @@
-import Drive from "jz/caderno/storage/Drive";
 import BrowserStorage from "jz/caderno/storage/BrowserStorage";
+import Drive from "jz/caderno/storage/Drive";
 
 export default class Note {
     // A Note represents a note with a title and a content.
