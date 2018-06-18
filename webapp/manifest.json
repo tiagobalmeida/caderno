@@ -93,7 +93,7 @@
         {
           "pattern": "notes/{noteId}",
           "name": "note-read",
-          "target": ["notesMaster", "noteRead"]
+          "target": ["notesMaster", "noteDisplay"]
         },
         {
 	  "pattern": "notes",
@@ -138,8 +138,8 @@
           "viewName": "NoteEdit",
 	  "viewLevel": 2
         },
-        "noteRead":{
-          "viewName": "Note",
+        "noteDisplay":{
+          "viewName": "NoteDisplay",
 	  "viewLevel": 2
         },
         "settings":{

@@ -13,26 +13,16 @@
 	class="sapUiNoContentPadding"
         floatingFooter="false">
     <content>
-      <f:SimpleForm
-          layout="ResponsiveGridLayout"
-		  title="New Note"
-		  labelSpanXL="3"
-		  labelSpanL="3"
-		  labelSpanM="3"
-		  labelSpanS="12"
-		  adjustLabelSpan="false"
-		  emptySpanXL="4"
-		  emptySpanL="4"
-		  emptySpanM="4"
-		  emptySpanS="0"
-		  columnsXL="1"
-		  columnsL="1"
-		  columnsM="1"
-		  singleContainerFullSize="false" >
+      <ObjectPageLayout id="apiDetailObjectPage"
+			enableLazyLoading="true"
+			showAnchorBarPopover="true"
+			upperCaseAnchorBar="false"
+			busyIndicatorDelay="0">
         <Input value="{view>/note/name}" placeholder="{i18n>note.edit.name.placeholder}" />
       </f:SimpleForm>
 
       <cust:Simplemde
+          edit="false"
           content="{view>/note/content}"
           save="doSaveNote" />
     </content>
