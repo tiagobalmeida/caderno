@@ -9,10 +9,7 @@ sap.ui.define([
                 "use strict";
 
                 /**
-                 * Constructor for a new Camera control.
-                 *
-                 * @param {string} [sId] id for the new control, generated automatically if no id is given
-                 * @param {object} [mSettings] initial settings for the new control
+                 * Constructor for a new Markdown Editor control
                  *
                  * @class
                  *
@@ -25,6 +22,9 @@ sap.ui.define([
                    */
                   metadata: {
                     properties: {
+                      edit: {
+                        type "Boolean", defaultValue: true
+                      },
                       placeholderText: {
                         type: "String", defaultValue: "Type your note here..."
                       },
@@ -92,6 +92,7 @@ sap.ui.define([
 
                   onAfterRendering: function () {
                     var placeholder = this.getPlaceholderText();
+                    var editable = this.getEdit();
 
                     // Most options demonstrate the non-default behavior
                     var simplemde = new SimpleMDE({
@@ -134,6 +135,7 @@ sap.ui.define([
 	              tabSize: 4,
                       toolbar: this._simplemdeToolbar()
                     });
+
                     this._simplemde = simplemde;
                   }
 

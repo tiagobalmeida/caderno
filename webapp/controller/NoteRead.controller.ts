@@ -3,7 +3,7 @@ import Constants  from "jz/caderno/util/Constants";
 import Navigator from "jz/caderno/util/Navigator";
 
 
-@UI5("jz.caderno.controller.NoteEdit")
+@UI5("jz.caderno.controller.NoteRead")
 export default class NoteRead extends BaseController {
 
     static readonly routeName = "note-read";

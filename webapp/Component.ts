@@ -16,10 +16,10 @@ export default class Component extends UIComponent {
         // call the base component's init function
         UIComponent.prototype.init.apply(this, arguments);
         // enable Google Drive support
-        this.initDrive();
+        // this.initDrive();
         // enable local model support
         this.initBrowserStorage();
-        this.createWelcomeNote();
+        // this.createWelcomeNote();
         // enable routing
         this.getRouter().initialize();
         // set the device model

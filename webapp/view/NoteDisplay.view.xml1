@@ -1,0 +1,49 @@
+<mvc:View
+    height="100%"
+    width="100%"
+    controllerName="jz.caderno.controller.NoteRead"
+    xmlns="sap.m"
+    xmlns:f="sap.ui.layout.form"
+    xmlns:l="sap.ui.layout"
+    xmlns:mvc="sap.ui.core.mvc"
+    xmlns:core="sap.ui.core"
+    xmlns:cust="jz.caderno.control"
+    xmlns:ux="sap.uxap">
+
+  <ux:ObjectPageLayout
+      enableLazyLoading="true"
+      showAnchorBarPopover="true"
+      upperCaseAnchorBar="false"
+      busyIndicatorDelay="0">
+    <ux:headerTitle>
+      <ux:ObjectPageHeader
+	  objectTitle="{view>/note/name}"
+	  objectImageShape="Circle"
+	  objectImageAlt="Denise Smith"
+	  objectSubtitle="Note"
+	  isObjectIconAlwaysVisible="false"
+	  isObjectTitleAlwaysVisible="false"
+	  isObjectSubtitleAlwaysVisible="false">
+	<ux:actions>
+	</ux:actions>
+      </ux:ObjectPageHeader>
+    </ux:headerTitle>
+
+    <ux:sections>
+      <ux:ObjectPageSection title="2014 Goals Plan">
+        <cust:Simplemde
+            edit="false"
+            content="{view>/note/content}" />
+      </ux:ObjectPageSection>
+    </ux:sections>
+
+    <ux:footer>
+      <OverflowToolbar>
+        <Label text="Saved note" />
+	<ToolbarSpacer/>
+	<Button type="Accept" text="Accept"/>
+      </OverflowToolbar>
+    </ux:footer>
+  </ux:ObjectPageLayout>
+
+</mvc:View>
