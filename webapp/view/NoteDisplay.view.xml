@@ -1,11 +1,12 @@
 <mvc:View
-    controllerName="jz.caderno.controller.NoteRead"
+    controllerName="jz.caderno.controller.NoteDisplay"
     xmlns="sap.uxap"
     xmlns:m="sap.m"
     xmlns:core="sap.ui.core"
     xmlns:mvc="sap.ui.core.mvc"
     xmlns:layout="sap.ui.layout"
     xmlns:custom="sap.ui.documentation.sdk.controls"
+    xmlns:cust="jz.caderno.control"
     xmlns:template="http://schemas.sap.com/sapui5/extension/sap.ui.core.template/1">
 
   <m:Page
@@ -15,8 +16,7 @@
       class="apiDetailPage">
 
     <m:content>
-      <m:Label text="test" />
-
+      <cust:Simplemde content="{view>/note/content}" edit="false" />
     </m:content>
   </m:Page>
 </mvc:View>

@@ -23,7 +23,7 @@ sap.ui.define([
                   metadata: {
                     properties: {
                       edit: {
-                        type "Boolean", defaultValue: true
+                        type: "boolean", defaultValue: true
                       },
                       placeholderText: {
                         type: "String", defaultValue: "Type your note here..."
@@ -54,7 +54,8 @@ sap.ui.define([
 
                   _simplemdeToolbar: function () {
                     var that = this;
-                    var toolbar = [
+                    var editable = this.getEdit();
+                    var editToolbar = [
                       "bold",
                       "italic",
                       "strikethrough",
@@ -87,7 +88,14 @@ sap.ui.define([
                         action: that.onSave.bind(that),
                         className: "fa fa-save", title: "Save"}
                     ];
-                    return toolbar;
+                    var previewToolbar = [
+                      "edit",
+                      "fullscreen"
+                    ];
+                    if (editable) {
+                      return editToolbar;
+                    }
+                    return previewToolbar;
                   },
 
                   onAfterRendering: function () {
@@ -135,7 +143,9 @@ sap.ui.define([
 	              tabSize: 4,
                       toolbar: this._simplemdeToolbar()
                     });
-
+                    if (!editable) {
+                      simplemde.togglePreview();
+                    }
                     this._simplemde = simplemde;
                   }
 

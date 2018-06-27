@@ -1,12 +1,12 @@
-import BaseController from "jz/caderno/controller/BaseController"
+import BaseController from "jz/caderno/controller/BaseController";
 import Constants  from "jz/caderno/util/Constants";
 import Navigator from "jz/caderno/util/Navigator";
 
 
-@UI5("jz.caderno.controller.NoteRead")
-export default class NoteRead extends BaseController {
+@UI5("jz.caderno.controller.NoteDisplay")
+export default class NoteDisplay extends BaseController {
 
-    static readonly routeName = "note-read";
+    static readonly routeName = "note-display";
 
     protected navigate:Navigator;
 
