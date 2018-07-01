@@ -1,4 +1,4 @@
-import BaseController from "jz/caderno/controller/BaseController"
+import BaseController from "jz/caderno/controller/BaseController";
 import Constants  from "jz/caderno/util/Constants";
 import Navigator from "jz/caderno/util/Navigator";
 import Note from "jz/caderno/domain/Note";

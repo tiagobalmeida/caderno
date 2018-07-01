@@ -21,4 +21,9 @@ export default class Navigator {
                                                },
                                                false);
     }
+
+    public toDriveSetup():void {
+        this.getRouter(this._controller).navTo("drive-setup",
+                                               false);
+    }
 };

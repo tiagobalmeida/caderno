@@ -114,6 +114,11 @@
           "pattern": "drive-authorize",
 	  "name": "driveAuthorize",
 	  "target": ["notesMaster", "driveAuthorize"]
+        },
+        {
+          "pattern": "drive-setup",
+	  "name": "drive-setup",
+	  "target": "driveSetup"
         }
       ],
       "targets": {
@@ -132,6 +137,10 @@
 	},
         "driveAuthorize":{
           "viewName": "DriveLogin",
+          "viewLevel": 2
+        },
+        "driveSetup": {
+          "viewName": "DriveSetup",
           "viewLevel": 2
         },
         "noteEdit":{
