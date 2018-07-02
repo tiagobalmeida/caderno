@@ -2,10 +2,10 @@ import BaseController from "jz/caderno/controller/BaseController";
 import Constants  from "jz/caderno/util/Constants";
 import Navigator from "jz/caderno/util/Navigator";
 
-@UI5("jz.caderno.controller.Drivesetup")
+@UI5("jz.caderno.controller.DriveSetup")
 export default class DriveSetup extends BaseController {
 
-    static readonly routeName = "note-edit";
+    static readonly routeName = "drive-setup";
 
     protected navigate:Navigator;
 

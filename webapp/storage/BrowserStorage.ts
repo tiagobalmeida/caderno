@@ -1,3 +1,4 @@
+import Note from "jz/caderno/domain/Note";
 import JSONModel from "sap/ui/model/json/JSONModel";
 
 
@@ -18,7 +19,7 @@ export default class BrowserStorage {
      **/
     public initialize(noteTransformer: (n:any) => any) {
         // make sure there is a data model.
-        var model = this.component.getModel("data");
+        var model = <sap.ui.model.json.JSONModel>this.component.getModel("data");
         if(!model){
             model = new JSONModel({}, false);
             this.component.setModel(model, "data");

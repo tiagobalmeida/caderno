@@ -14,7 +14,8 @@ export default class Component extends UIComponent {
 
     public init(): void {
         // call the base component's init function
-        UIComponent.prototype.init.apply(this, arguments);
+        super.init();
+        //UIComponent.prototype.init.apply(this, arguments);
         // enable Google Drive support
         // this.initDrive();
         // enable local model support
