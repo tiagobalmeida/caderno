@@ -17,7 +17,7 @@ export default class Component extends UIComponent {
         super.init();
         //UIComponent.prototype.init.apply(this, arguments);
         // enable Google Drive support
-        // this.initDrive();
+        this.initDrive();
         // enable local model support
         this.initBrowserStorage();
         // this.createWelcomeNote();
@@ -36,7 +36,7 @@ export default class Component extends UIComponent {
         // transform the plain object from local storage
         // before being put into the model. We use this
         // to convert into proper Note instances.
-        storage.initialize((n:any) => {
+        storage.initialize((n: any) => {
             var note = new Note(that);
             note.title = n.title;
             note.content = n.content;
@@ -53,15 +53,17 @@ export default class Component extends UIComponent {
     }
 
     protected initDrive(): void {
-        var clientId = "382123780150-kcqmtbn64bg5m842kkd36borad6hsbd0.apps.googleusercontent.com";
-        var apiKey = "TIXME";
-
-        Drive.configure(clientId, apiKey);
-        var d = Drive.getInstance();
-        d.loadLibraries().then(
-            function(){
-                d.initialize();
-            }
-        );
+        var modulePath = jQuery.sap.getModulePath("jz.caderno.storage") + "/creds.drive.json";
+        var credentialsModel = new sap.ui.model.json.JSONModel(modulePath, false);
+        credentialsModel.attachRequestCompleted(function() {
+            var creds = credentialsModel.getProperty("/");
+            Drive.configure(creds.client, creds.api);
+            var d = Drive.getInstance();
+            d.loadLibraries().then(
+                function() {
+                    d.initialize();
+                }
+            );
+        }, this);
     }
 }

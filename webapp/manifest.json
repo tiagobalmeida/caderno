@@ -1,165 +1,165 @@
 {
-  "_version": "1.8.0",
-  "sap.app": {
-    "id": "jz.caderno",
-    "type": "application",
-    "i18n": "i18n/i18n.properties",
-    "applicationVersion": {
-      "version": "1.0.0"
-    },
-    "title": "{{appTitle}}",
-    "description": "{{appDescription}}",
-    "sourceTemplate": {
-      "id": "ui5template.basicSAPUI5ApplicationProject",
-      "version": "1.40.12"
-    }
-  },
-
-  "sap.ui": {
-    "technology": "UI5",
-    "icons": {
-      "icon": "",
-      "favIcon": "",
-      "phone": "",
-      "phone@2": "",
-      "tablet": "",
-      "tablet@2": ""
-    },
-    "deviceTypes": {
-      "desktop": true,
-      "tablet": true,
-      "phone": true
-    },
-    "supportedThemes": [
-      "sap_hcb",
-      "sap_belize"
-
-    ]
-  },
-
-  "sap.ui5": {
-    "rootView": {
-      "viewName": "jz.caderno.view.App",
-      "type": "XML",
-      "async": true
-    },
-    "dependencies": {
-      "minUI5Version": "1.30.0",
-      "libs": {
-	"sap.ui.layout": {},
-	"sap.ui.core": {},
-	"sap.m": {}
-      }
-    },
-    "contentDensities": {
-      "compact": true,
-      "cozy": true
-    },
-    "models": {
-      "i18n": {
-	"type": "sap.ui.model.resource.ResourceModel",
-	"settings": {
-	  "bundleName": "jz.caderno.i18n.i18n"
-	}
-      }
-    },
-    "resources": {
-      "js": [
-        {"uri": "bower_components/simplemde/dist/simplemde.min.js"},
-        {"uri": "bower_components/simplemde/dist/simplemde.min.js"}
-      ],
-      "css": [
-        {"uri": "css/style.css"},
-        {"uri": "bower_components/simplemde/dist/simplemde.min.css"},
-        {"uri": "bower_components/highlightjs/styles/monokai.css"},
-        {"uri": "bower_components/components-font-awesome/css/fontawesome-all.min.css"}
-      ]
-    },
-    "routing": {
-      "config": {
-	"routerClass": "sap.m.routing.Router",
-	"viewType": "XML",
-	"async": true,
-	"viewPath": "jz.caderno.view",
-	"controlId": "splitApp",
-	"controlAggregation": "detailPages"
-      },
-      "routes": [
-        {
-          "pattern": "notes/{noteId}/edit",
-          "name": "note-edit",
-          "target": ["notesMaster", "noteEdit"]
+    "_version": "1.8.0",
+    "sap.app": {
+        "id": "jz.caderno",
+        "type": "application",
+        "i18n": "i18n/i18n.properties",
+        "applicationVersion": {
+            "version": "1.0.0"
         },
-        {
-          "pattern": "notes/{noteId}",
-          "name": "note-read",
-          "target": ["notesMaster", "noteDisplay"]
-        },
-        {
-	  "pattern": "notes",
-	  "name": "notes",
-	  "target": ["notesMaster", "notesDetailInitial"]
-	},
-        {
-	  "pattern": "settings",
-	  "name": "settings",
-	  "target": ["notesMaster", "settings"]
-	},
-        {
-          "pattern": "test",
-	  "name": "test",
-	  "target": ["notesMaster", "test"]
-        },
-        {
-          "pattern": "drive-authorize",
-	  "name": "driveAuthorize",
-	  "target": ["notesMaster", "driveAuthorize"]
-        },
-        {
-          "pattern": "drive-setup",
-	  "name": "drive-setup",
-	  "target": "driveSetup"
+        "title": "{{appTitle}}",
+        "description": "{{appDescription}}",
+        "sourceTemplate": {
+            "id": "ui5template.basicSAPUI5ApplicationProject",
+            "version": "1.40.12"
         }
-      ],
-      "targets": {
-	"notesMaster": {
-	  "viewType": "XML",
-	  "transition": "slide",
-	  "clearAggregation": true,
-	  "viewName": "NotesMaster",
-          "viewId": "notesMaster",
-	  "controlAggregation": "masterPages"
-	},
-        "notesDetailInitial": {
-	  "viewName": "NotesDetailInitial",
-	  "viewId": "notesDetailInitial",
-	  "viewLevel": 2
-	},
-        "driveAuthorize":{
-          "viewName": "DriveLogin",
-          "viewLevel": 2
+    },
+
+    "sap.ui": {
+        "technology": "UI5",
+        "icons": {
+            "icon": "",
+            "favIcon": "",
+            "phone": "",
+            "phone@2": "",
+            "tablet": "",
+            "tablet@2": ""
         },
-        "driveSetup": {
-          "viewName": "DriveSetup",
-          "viewLevel": 2
+        "deviceTypes": {
+            "desktop": true,
+            "tablet": true,
+            "phone": true
         },
-        "noteEdit":{
-          "viewName": "NoteEdit",
-	  "viewLevel": 2
+        "supportedThemes": [
+            "sap_hcb",
+            "sap_belize"
+
+        ]
+    },
+
+    "sap.ui5": {
+        "rootView": {
+            "viewName": "jz.caderno.view.App",
+            "type": "XML",
+            "async": true
         },
-        "noteDisplay":{
-          "viewName": "NoteDisplay",
-	  "viewLevel": 2
+        "dependencies": {
+            "minUI5Version": "1.30.0",
+            "libs": {
+	            "sap.ui.layout": {},
+	            "sap.ui.core": {},
+	            "sap.m": {}
+            }
         },
-        "settings":{
-          "viewName": "Settings",
-	  "viewLevel": 2
+        "contentDensities": {
+            "compact": true,
+            "cozy": true
         },
-        "test":{
-          "viewName": "Test",
-	  "viewLevel": 2
+        "models": {
+            "i18n": {
+	            "type": "sap.ui.model.resource.ResourceModel",
+	            "settings": {
+	                "bundleName": "jz.caderno.i18n.i18n"
+	            }
+            }
+        },
+        "resources": {
+            "js": [
+                {"uri": "bower_components/simplemde/dist/simplemde.min.js"},
+                {"uri": "bower_components/simplemde/dist/simplemde.min.js"}
+            ],
+            "css": [
+                {"uri": "css/style.css"},
+                {"uri": "bower_components/simplemde/dist/simplemde.min.css"},
+                {"uri": "bower_components/highlightjs/styles/monokai.css"},
+                {"uri": "bower_components/components-font-awesome/css/fontawesome-all.min.css"}
+            ]
+        },
+        "routing": {
+            "config": {
+	            "routerClass": "sap.m.routing.Router",
+	            "viewType": "XML",
+	            "async": true,
+	            "viewPath": "jz.caderno.view",
+	            "controlId": "splitApp",
+	            "controlAggregation": "detailPages"
+            },
+            "routes": [
+                {
+                    "pattern": "notes/{noteId}/edit",
+                    "name": "note-edit",
+                    "target": ["notesMaster", "noteEdit"]
+                },
+                {
+                    "pattern": "notes/{noteId}",
+                    "name": "note-read",
+                    "target": ["notesMaster", "noteDisplay"]
+                },
+                {
+	                "pattern": "notes",
+	                "name": "notes",
+	                "target": ["notesMaster", "notesDetailInitial"]
+	            },
+                {
+	                "pattern": "settings",
+	                "name": "settings",
+	                "target": ["notesMaster", "settings"]
+	            },
+                {
+                    "pattern": "test",
+	                "name": "test",
+	                "target": ["notesMaster", "test"]
+                },
+                {
+                    "pattern": "drive-authorize",
+	                "name": "driveAuthorize",
+	                "target": ["notesMaster", "driveAuthorize"]
+                },
+                {
+                    "pattern": "drive-setup",
+	                "name": "drive-setup",
+	                "target": "driveSetup"
+                }
+            ],
+            "targets": {
+	            "notesMaster": {
+	                "viewType": "XML",
+	                "transition": "slide",
+	                "clearAggregation": true,
+	                "viewName": "NotesMaster",
+                    "viewId": "notesMaster",
+	                "controlAggregation": "masterPages"
+	            },
+                "notesDetailInitial": {
+	                "viewName": "NotesDetailInitial",
+	                "viewId": "notesDetailInitial",
+	                "viewLevel": 2
+	            },
+                "driveAuthorize":{
+                    "viewName": "DriveLogin",
+                    "viewLevel": 2
+                },
+                "driveSetup": {
+                    "viewName": "DriveSetup",
+                    "viewLevel": 2
+                },
+                "noteEdit":{
+                    "viewName": "NoteEdit",
+	                "viewLevel": 2
+                },
+                "noteDisplay":{
+                    "viewName": "NoteDisplay",
+	                "viewLevel": 2
+                },
+                "settings":{
+                    "viewName": "Settings",
+	                "viewLevel": 2
+                },
+                "test":{
+                    "viewName": "Test",
+	                "viewLevel": 2
+                }
+            }
         }
-      }
     }
-  }
 }
