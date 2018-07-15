@@ -15,7 +15,6 @@
       <Wizard id="driveSetupWizard"
 	      complete="onWizardCompleted"
 	      enableBranching="true">
-
 	<WizardStep
 	    title="{i18n>drive.setup.authorize.title}"
 	    subsequentSteps="DriveExperienceBranchStep"
@@ -24,14 +23,14 @@
                 class="sapUiSmallMarginBottom"
 		text="Caderno can save your notes on Google Drive allowing you to view and edit them on any computer or browser. \nTo do this, it needs your permission to store and read notes from a single folder.\nDon't worry, we'll never fiddle with anything outside this folder.\nPress the button below to make google ask you if you authorize Caderno."/>
 	  <Button type="Accept"
-                  text="{i18n>drive.setup.authorize.button}" action="doStartAuthorization" />
+                  text="{i18n>drive.setup.authorize.button}" press="doStartAuthorization" />
 	</WizardStep>
 
 	<WizardStep
             id="DriveExperienceBranchStep"
 	    title="{i18n>drive.setup.firstOrReturn.title}"
 	    subsequentSteps="FirstTimeSetupStep, ReturningSetupStep"
-	    complete="goToPaymentStep"
+	    complete="onDriveExperienceComplete"
 	    icon="sap-icon://money-bills">
 	  <Text class="sapUiSmallMarginBottom"
 		text="Thanks for authorizing Caderno to store data on your Drive :-)\nWe're almost there.. One more question so we know if it needs to import anything from Drive:\n\nIs this is the first time you're doing this setup or if have you done this before (perhaps on a different computer?)"/>
@@ -47,7 +46,6 @@
 		<SegmentedButtonItem key="returning"
                                      icon="sap-icon://action-settings"
                                      text="{i18n>drive.setup.returning.button}" />
-
 	      </items>
 	    </SegmentedButton>
 	  </HBox>
@@ -55,12 +53,28 @@
         <WizardStep
             id="FirstTimeSetupStep"
 	    title="{i18n>drive.setup.firstTime.title}"
-	    icon="sap-icon://activate">
+            subsequentSteps="FinishedStep"
+            icon="sap-icon://activate">
+          <Text width="100%"
+                class="sapUiSmallMarginBottom"
+		text="Caderno will create a folder on your drive called Caderno Notes.\nYou can rename or move this folder without any problem. All notes will be stored inside." />
 	</WizardStep>
-         <WizardStep
+        <WizardStep
             id="ReturningSetupStep"
 	    title="{i18n>drive.setup.returning.title}"
+            subsequentSteps="FinishedStep"
 	    icon="sap-icon://action-settings">
+          <Text width="100%"
+                class="sapUiSmallMarginBottom"
+		text="If you used this previously you probably already have Caderno notes on your Drive. Can you pick which folder contains them below please?" />
+	</WizardStep>
+        <WizardStep
+            id="FinishedStep"
+	    title="{i18n>drive.setup.finished.title}"
+	    icon="sap-icon://action-settings">
+          <Text width="100%"
+                class="sapUiSmallMarginBottom"
+		text="All done! Enjoy the Drive integration." />
 	</WizardStep>
       </Wizard>
     </content>

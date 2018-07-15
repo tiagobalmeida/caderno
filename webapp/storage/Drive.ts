@@ -48,7 +48,6 @@ export default class Drive {
         return loadedPromise;
     }
 
-
     public initialize() {
         if(Drive.initialized === null){
             var p = new Promise(function(resolve, reject){
@@ -66,6 +65,8 @@ export default class Drive {
                                 console.log("Drive: isSignedIn triggered");
                             });
                         resolve();
+                    }).catch(function(error:any){
+                        debugger;
                     });
                 });
             });
@@ -82,6 +83,10 @@ export default class Drive {
             //authorizeButton.onclick = handleAuthClick;
             //signoutButton.onclick = handleSignoutClick;
         //});
+    }
+
+    public signIn() {
+        gapi.auth2.getAuthInstance().signIn();
     }
 
 

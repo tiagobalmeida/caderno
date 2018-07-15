@@ -33,7 +33,7 @@ export default class Note {
 
     public save(){
         this.browserSave();
-        //this.driveSave();
+        this.driveSave();
     }
 
     public browserSave(){
