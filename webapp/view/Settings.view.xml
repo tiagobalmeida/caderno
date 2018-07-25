@@ -38,13 +38,18 @@
 	  </Select>
 	  <Label text="{i18n>settings.save.rest.url}" />
           <Input text="{appSettings.save.rest.url}" />
-	  <core:Title text="{i18n>settings.others}" />
-	  <Label text="Field1" />
-	  <Input value="value1" />
 
           <core:Title text="{i18n>settings.drive}" />
 	  <Label text="{i18n>settings.drive.rootFolder}" />
-          <Input text="{appSettings>driveRootFolderId}" />
+          <Input text="{appSettings>/driveRootFolderId}" />
+	  <Label text="{i18n>settings.drive.enabled}" />
+          <Switch state="{appSettings>/useDrive}"
+                  customTextOn="Yes"
+                  customTextOff="No" />
+
+          <core:Title text="{i18n>settings.others}" />
+	  <Label text="Field1" />
+	  <Input value="value1" />
 
         </f:content>
       </f:SimpleForm>
