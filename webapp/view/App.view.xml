@@ -8,7 +8,8 @@
   <Page
       showHeader="false"
       enableScrolling="false"
-      showNavButton="false">
+      showNavButton="false"
+      id="app">
     <content>
       <tnt:ToolHeader id="headerToolbar">
         <ToolbarSpacer visible="{= ${device>/system/phone} || !${appView>/bPhoneSize}}">

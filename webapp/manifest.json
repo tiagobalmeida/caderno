@@ -103,7 +103,7 @@
                 {
 	                "pattern": "settings",
 	                "name": "settings",
-	                "target": ["notesMaster", "settings"]
+	                "target": ["settings"]
 	            },
                 {
                     "pattern": "test",
@@ -152,8 +152,8 @@
 	                "viewLevel": 2
                 },
                 "settings":{
-                    "viewName": "Settings",
-	                "viewLevel": 2
+                  "viewName": "Settings",
+	          "viewLevel": 1
                 },
                 "test":{
                     "viewName": "Test",

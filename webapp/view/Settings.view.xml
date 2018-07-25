@@ -1,48 +1,53 @@
 <mvc:View
-	height="100%"
-	width="100%"
-	controllerName="jz.caderno.controller.Settings"
-	xmlns="sap.m"
+    height="100%"
+    width="100%"
+    controllerName="jz.caderno.controller.Settings"
+    xmlns="sap.m"
     xmlns:f="sap.ui.layout.form"
-	xmlns:l="sap.ui.layout"
-	xmlns:mvc="sap.ui.core.mvc"
-	xmlns:core="sap.ui.core"
-	xmlns:cust="jz.caderno.control">
+    xmlns:l="sap.ui.layout"
+    xmlns:mvc="sap.ui.core.mvc"
+    xmlns:core="sap.ui.core"
+    xmlns:cust="jz.caderno.control">
   <Page showHeader="true"
-		class="sapUiNoContentPadding">
+	class="sapUiNoContentPadding">
     <content>
       <f:SimpleForm editable="true"
-			        layout="ResponsiveGridLayout"
-			        title="{i18n>settings.title}"
-			        labelSpanXL="4"
-			        labelSpanL="3"
-			        labelSpanM="4"
-			        labelSpanS="12"
-			        adjustLabelSpan="false"
-			        emptySpanXL="0"
-			        emptySpanL="4"
-			        emptySpanM="0"
-			        emptySpanS="0"
-			        columnsXL="2"
-			        columnsL="1"
-			        columnsM="1"
-			        singleContainerFullSize="false" >
-		<f:content>
-		  <core:Title text="{i18n>settings.save}" />
-		  <Label text="{i18n>settings.save.method.label}" />
-		  <Select selectedKey="{appSettings>save.method}">
-			<items>
-			  <core:Item text="{i18n>settings.save.method.rest.text}" key="REST"/>
-			  <core:Item text="{i18n>settings.save.method.gdrive.text}" key="GDRIVE"/>
-			</items>
-		  </Select>
-		  <Label text="{i18n>settings.save.rest.url}" />
+		    layout="ResponsiveGridLayout"
+		    title="{i18n>settings.title}"
+		    labelSpanXL="4"
+		    labelSpanL="3"
+		    labelSpanM="4"
+		    labelSpanS="12"
+		    adjustLabelSpan="false"
+		    emptySpanXL="0"
+		    emptySpanL="4"
+		    emptySpanM="0"
+		    emptySpanS="0"
+		    columnsXL="2"
+		    columnsL="1"
+		    columnsM="1"
+		    singleContainerFullSize="false" >
+	<f:content>
+	  <core:Title text="{i18n>settings.save}" />
+	  <Label text="{i18n>settings.save.method.label}" />
+	  <Select selectedKey="{appSettings>save.method}">
+	    <items>
+	      <core:Item text="{i18n>settings.save.method.rest.text}" key="REST"/>
+	      <core:Item text="{i18n>settings.save.method.gdrive.text}" key="GDRIVE"/>
+	    </items>
+	  </Select>
+	  <Label text="{i18n>settings.save.rest.url}" />
           <Input text="{appSettings.save.rest.url}" />
-		  <core:Title text="{i18n>settings.others}" />
-		  <Label text="Field1" />
-		  <Input value="value1" />
-		</f:content>
-	  </f:SimpleForm>
+	  <core:Title text="{i18n>settings.others}" />
+	  <Label text="Field1" />
+	  <Input value="value1" />
+
+          <core:Title text="{i18n>settings.drive}" />
+	  <Label text="{i18n>settings.drive.rootFolder}" />
+          <Input text="{appSettings>driveRootFolderId}" />
+
+        </f:content>
+      </f:SimpleForm>
     </content>
   </Page>
 </mvc:View>
