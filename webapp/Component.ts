@@ -4,7 +4,7 @@ import JSONModel from "sap/ui/model/json/JSONModel";
 import Drive from "jz/caderno/storage/Drive";
 import BrowserStorage from "jz/caderno/storage/BrowserStorage";
 import Note from "jz/caderno/domain/Note";
-
+import AppSettings from "jz/caderno/domain/AppSettings";
 
 @UI5("jz.caderno.Component")
 export default class Component extends UIComponent {
@@ -15,11 +15,12 @@ export default class Component extends UIComponent {
     public init(): void {
         // call the base component's init function
         super.init();
-        //UIComponent.prototype.init.apply(this, arguments);
-        // enable Google Drive support
-        this.initDrive();
+        var appSettings = new AppSettings();
+        appSettings.load();
         // enable local model support
         this.initBrowserStorage();
+        // enable Google Drive support
+        this.initDrive(appSettings.driveRootFolderId);
         // this.createWelcomeNote();
         // enable routing
         this.getRouter().initialize();
@@ -27,6 +28,7 @@ export default class Component extends UIComponent {
         // this.setModel(models.createDeviceModel(), "device");
         // set the appSettings model
         // this.setModel(models.createAppSettingsModel(), "appSettings");
+        //UIComponent.prototype.init.apply(this, arguments);
     }
 
     protected initBrowserStorage(): void {
@@ -42,6 +44,7 @@ export default class Component extends UIComponent {
             note.content = n.content;
             return note;
         });
+
     }
 
     protected createWelcomeNote(): void {
@@ -52,16 +55,24 @@ export default class Component extends UIComponent {
         storage.createFile(note);
     }
 
-    protected initDrive(): void {
+    protected initDrive(rootFolder:string|null): void {
         var modulePath = jQuery.sap.getModulePath("jz.caderno.storage") + "/creds.drive.json";
         var credentialsModel = new sap.ui.model.json.JSONModel(modulePath, false);
         credentialsModel.attachRequestCompleted(function() {
             var creds = credentialsModel.getProperty("/");
             Drive.configure(creds.client, creds.api);
             var d = Drive.getInstance();
+            if ( rootFolder ) {
+                d.setRootFolderId(rootFolder);
+            }
             d.loadLibraries().then(
                 function() {
-                    d.initialize();
+                    d.initialize()
+                    // When drive is loaded, load everything
+                        .then(d.listFiles.bind(d))
+                        .then(f => {
+                            var a = 1;
+                        });
                 }
             );
         }, this);

@@ -28,7 +28,18 @@
 		    columnsM="1"
 		    singleContainerFullSize="false" >
 	<f:content>
-	  <core:Title text="{i18n>settings.save}" />
+          <core:Title text="{i18n>settings.drive}" />
+	  <Label text="{i18n>settings.drive.enabled}" />
+          <Switch state="{appSettings>/useDrive}"
+                  customTextOn="Yes"
+                  customTextOff="No" />
+	  <Label text="{i18n>settings.drive.rootFolder}"
+                 enabled="{appSettings>/useDrive}" />
+          <Input value="{appSettings>/driveRootFolderId}"
+                 enabled="{appSettings>/useDrive}"/>
+
+          <!--
+          <core:Title text="{i18n>settings.save}" />
 	  <Label text="{i18n>settings.save.method.label}" />
 	  <Select selectedKey="{appSettings>save.method}">
 	    <items>
@@ -39,20 +50,19 @@
 	  <Label text="{i18n>settings.save.rest.url}" />
           <Input text="{appSettings.save.rest.url}" />
 
-          <core:Title text="{i18n>settings.drive}" />
-	  <Label text="{i18n>settings.drive.rootFolder}" />
-          <Input text="{appSettings>/driveRootFolderId}" />
-	  <Label text="{i18n>settings.drive.enabled}" />
-          <Switch state="{appSettings>/useDrive}"
-                  customTextOn="Yes"
-                  customTextOff="No" />
-
           <core:Title text="{i18n>settings.others}" />
 	  <Label text="Field1" />
 	  <Input value="value1" />
+          -->
 
         </f:content>
       </f:SimpleForm>
     </content>
+    <footer>
+      <OverflowToolbar>
+	<ToolbarSpacer/>
+	<Button type="Accept" text="Save" press="doSaveSettings"/>
+      </OverflowToolbar>
+    </footer>
   </Page>
 </mvc:View>

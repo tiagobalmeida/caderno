@@ -28,6 +28,10 @@ export default class Drive {
         return Drive._instance;
     }
 
+    public setRootFolderId(rootFolderId:string) {
+        this.rootFolderId = rootFolderId;
+    }
+
 
     public loadLibraries() {
         if (this._loadedLib !== null) {
@@ -73,16 +77,6 @@ export default class Drive {
             Drive.initialized = p;
         }
         return Drive.initialized;
-            //
-          //  .then(function() {
-            // Listen for sign-in state changes.
-            //gapi.auth2.getAuthInstance().isSignedIn.listen(updateSigninStatus);
-
-            // Handle the initial sign-in state.
-            //updateSigninStatus(gapi.auth2.getAuthInstance().isSignedIn.get());
-            //authorizeButton.onclick = handleAuthClick;
-            //signoutButton.onclick = handleSignoutClick;
-        //});
     }
 
     public signIn() {
@@ -99,25 +93,11 @@ export default class Drive {
         return gapi.client.drive.files.create({
             resource: fileMetadata,
         });
-        // .then(function(response) {
-        // switch(response.status){
-        // case 200:
-        //     var // FIXME: le = response.result;
-        //     console.log('Created Folder Id: ', file.id);
-        //     createFile(file.id);
-        //     break;
-        // default:
-        //     console.log('Error creating the folder, '+response);
-        //     break;
-        // }
-        //});
-
     }
 
 
     public createFile(name:string) : Promise<any> {
         var parentFolderId = this.rootFolderId;
-        parentFolderId = "16rfKEglAo9PJExDhVSf4b0giDHWMR7Sr"; // TODO
         var fileMetadata = {
             name: name,
             parents: [parentFolderId]
@@ -131,13 +111,15 @@ export default class Drive {
         });
         return c;
 
-        // TODO
-        //.then(function (req, file) {
-        //console.log('File Id: ', req.result.id);
-        //updateFileContent(req.result.id, 'content', function(){console.log('done');});
-        //});
     }
 
+    public listFiles() {
+        var rootId = this.rootFolderId;
+        return gapi.client.drive.files.list({
+            q: `${rootId} in parents`,
+            pageSize: 1000
+        });
+    }
 
     public updateFileContent(content:string, fileId:string) {
         var p = new Promise(function(resolve, reject){

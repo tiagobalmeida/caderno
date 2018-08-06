@@ -14,6 +14,7 @@ export default class Settings extends BaseController {
                                             this.onRouteMatched);
         this.navigate = new Navigator(this);
         var appSettings = new AppSettings();
+        appSettings.load(); // load from localStorage
         this.getView().setModel(
             new sap.ui.model.json.JSONModel(
                 appSettings, false),
@@ -21,6 +22,13 @@ export default class Settings extends BaseController {
     }
 
     onRouteMatched(oEvent:any) {
+
+    }
+
+    doSaveSettings(oEvent:any) {
+        var model = this.getView().getModel("appSettings");
+        var appSettings = <AppSettings>model.getProperty("/");
+        appSettings.save(); // write to localStoragex
 
     }
 

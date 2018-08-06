@@ -27,9 +27,15 @@ define(["require", "exports", "jz/caderno/controller/BaseController", "jz/cadern
             this.getRouter().attachRouteMatched(this.routeName, this.onRouteMatched);
             this.navigate = new Navigator_1.default(this);
             var appSettings = new AppSettings_1.default();
+            appSettings.load(); // load from localStorage
             this.getView().setModel(new sap.ui.model.json.JSONModel(appSettings, false), "appSettings");
         };
         Settings.prototype.onRouteMatched = function (oEvent) {
+        };
+        Settings.prototype.doSaveSettings = function (oEvent) {
+            var model = this.getView().getModel("appSettings");
+            var appSettings = model.getProperty("/");
+            appSettings.save(); // write to localStoragex
         };
         Settings.routeName = "settings";
         Settings = __decorate([
