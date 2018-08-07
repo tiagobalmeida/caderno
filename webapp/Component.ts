@@ -69,10 +69,12 @@ export default class Component extends UIComponent {
                 function() {
                     d.initialize()
                     // When drive is loaded, load everything
-                        .then(d.listFiles.bind(d))
-                        .then(f => {
-                            var a = 1;
+                        .then(function(){
+                            return d.listFiles();
                         });
+                        //.then(f => {
+                        //    var a = 1;
+                       // });
                 }
             );
         }, this);

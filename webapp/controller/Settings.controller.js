@@ -45,3 +45,4 @@ define(["require", "exports", "jz/caderno/controller/BaseController", "jz/cadern
     }(BaseController_1.default));
     exports.default = Settings;
 });
+//# sourceMappingURL=Settings.controller.js.map

@@ -14,7 +14,7 @@
         "strictNullChecks": true,
         "noImplicitReturns": true,
         "noImplicitThis": true,
-	"sourceMap": false,
+	"sourceMap": true,
         "baseUrl": "./",
         "paths": {
             "jz/caderno/*": [ "./webapp/*" ],

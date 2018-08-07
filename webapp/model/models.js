@@ -20,3 +20,4 @@ define(["require", "exports", "sap/ui/model/json/JSONModel", "sap/ui/Device", "j
         },
     };
 });
+//# sourceMappingURL=models.js.map

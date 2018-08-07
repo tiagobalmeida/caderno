@@ -37,6 +37,7 @@
                  enabled="{appSettings>/useDrive}" />
           <Input value="{appSettings>/driveRootFolderId}"
                  enabled="{appSettings>/useDrive}"/>
+	  <Button type="Accept" text="Save" press="doSaveSettings"/>
 
           <!--
           <core:Title text="{i18n>settings.save}" />

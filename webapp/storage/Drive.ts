@@ -114,11 +114,30 @@ export default class Drive {
     }
 
     public listFiles() {
+        var pageToken = null;
         var rootId = this.rootFolderId;
-        return gapi.client.drive.files.list({
-            q: `${rootId} in parents`,
-            pageSize: 1000
-        });
+        if ( !rootId ) {
+            console.error("Drive.ts: root folder was not set prior to listFiles being called");
+        }
+        return gapi.client.drive.files.list(
+            {
+                q: `'${rootId}' in parents`,
+                pageSize: 1000,
+                fields: 'nextPageToken, files(id, name)',
+                spaces: 'drive',
+                pageToken: pageToken
+            },
+            function (err, res) {
+                if (err) {
+                    // Handle error
+                } else {
+                    res.files.forEach(function (file) {
+                        console.log('Found file: ', file.name, file.id);
+                    });
+                    pageToken = res.nextPageToken;
+
+                }
+            });
     }
 
     public updateFileContent(content:string, fileId:string) {
